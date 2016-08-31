@@ -11,3 +11,10 @@ apt_packages:
   - emacs-mozc
   - gdebi-core
   - nginx
+  - tree
+  - golang
+  - google-drive-ocamlfuse
+
+apt_repos:
+  - ppa:webupd8team/java
+  - ppa:alessandro-strada/ppa
