@@ -1,0 +1,4 @@
+- hosts: my-computer
+  become: yes
+  roles:
+    - my-computer
