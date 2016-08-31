@@ -1,0 +1,13 @@
+---
+apt_packages:
+  - tmux
+  - language-pack-ja-base
+  - language-pack-ja
+  - ibus-mozc
+  - lv
+  - emacs
+  - rlwrap
+  - gnupg
+  - emacs-mozc
+  - gdebi-core
+  - nginx
