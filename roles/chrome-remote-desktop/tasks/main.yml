@@ -1,0 +1,19 @@
+---
+- name: chrome-remote-desktop install
+  become: yes
+  apt:
+    name: "{{item}}"
+  with_items:
+    - xorg
+    - gnome-core
+    - gnome-system-tools
+    - gnome-app-install
+    - tightvncserver
+    - libxss1
+    - libappindicator1
+    - libindicator7
+    - xdg-utils
+    - fonts-liberation
+    - xvfb
+    - xbase-clients
+    - python-psutil

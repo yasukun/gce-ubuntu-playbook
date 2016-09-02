@@ -1,0 +1,43 @@
+---
+- name: append sources.list
+  become: yes
+  lineinfile: >
+    dest=/etc/apt/sources.list
+    line='deb http://cran.ism.ac.jp/bin/linux/ubuntu xenial/'
+
+- name: get gpg key
+  become: yes
+  shell: gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+
+- name: install gpg key
+  become: yes
+  shell: gpg -a --export E084DAB9 | apt-key add -
+
+- name: apt update
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Install gdebi r-base
+  become: yes
+  apt:
+    name: "{{item}}"
+  with_items:
+    - gdebi-core
+    - r-base
+
+- name: Ensure ansible-cache directory exists
+  become: yes
+  shell: mkdir /var/local/ansible-cache creates=/var/local/ansible-cache
+
+- name: Download rstudio-server
+  become: yes
+  get_url: url=https://download2.rstudio.org/rstudio-server-0.99.903-amd64.deb dest=/var/local/ansible-cache/rstudio-server-0.99.903-amd64.deb
+
+- name: Install RStudio Server
+  become: yes
+  command: gdebi /var/local/ansible-cache/rstudio-server-0.99.903-amd64.deb
+
+- name: "Setup username: rsuser, password: rspword to log into RStudio Server"
+  bacome: yes
+  user: name=rsuser password=$6$rounds=100000$INgo5pOSR6YJURX2$MycqcjP9HV.P01xyzCqN8mQWJ/WLtIcjptd4waokL22/x2pg5g/spXf2BAG0IC/BiSLlA2MrJUURQVs6kuaFB0 update_password=always uid=1031

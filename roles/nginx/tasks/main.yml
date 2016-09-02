@@ -1,0 +1,7 @@
+---
+- name: nginx install
+  become: yes
+  apt:
+    name: "{{item}}"
+  with_items:
+    - nginx

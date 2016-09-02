@@ -1,9 +1,8 @@
 ---
-- name: apt repository
+
+- name: Add gdrive Repository
   become: yes
-  apt_repository:
-    repo: "{{item}}"
-  with_items: "{{apt_repos}}"
+  shell: add-apt-repository ppa:alessandro-strada/ppa
 
 - name: apt update
   become: yes
