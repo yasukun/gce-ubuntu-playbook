@@ -36,7 +36,7 @@
 
 - name: Install RStudio Server
   become: yes
-  command: gdebi /var/local/ansible-cache/rstudio-server-0.99.903-amd64.deb
+  command: gdebi /var/local/ansible-cache/rstudio-server-0.99.903-amd64.deb -n
 
 - name: Setup username rsuser password rspword to log into RStudio Server
   become: yes
