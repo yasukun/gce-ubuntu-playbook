@@ -17,3 +17,49 @@
     - xvfb
     - xbase-clients
     - python-psutil
+
+- name: create dot vnc dir
+  shell: mkdir ~/.vnc
+
+- name: deploy xstartup
+    copy:
+      src: xstartup
+      dest: ~/.vnc/xstartup
+
+- name: Ensure ansible-cache directory exists
+  become: yes
+  shell: mkdir /var/local/ansible-cache creates=/var/local/ansible-cache
+
+- name: Download chrome
+  become: yes
+  get_url: url=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb dest=/var/local/ansible-cache/google-chrome-stable_current_amd64.deb
+
+- name: Install chrome
+  become: yes
+  command: dpkg -i /var/local/ansible-cache/google-chrome-stable_current_amd64.deb
+
+- name: group add
+  become: yes
+  shell: groupadd chrome-remote-desktop
+
+- name: user mod
+  become: yes
+  shell: usermod -a -G chrome-remote-desktop <USERNAME>
+
+- name: creat chrome-remote-desktop-session
+    copy:
+      src: chrome-remote-desktop-session
+      dest: ~/.chrome-remote-desktop-session
+
+- name: append profile
+  lineinfile: >
+    dest=~/.profile
+    line='export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES=1366x768'
+
+- name: Download Chrome Remote Desktop
+  become: yes
+  get_url: url=http://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb dest=/var/local/ansible-cache/chrome-remote-desktop_current_amd64.deb
+
+- name: Install Chrome Remote Desktop
+  become: yes
+  command: dpkg -i /var/local/ansible-cache/chrome-remote-desktop_current_amd64.deb

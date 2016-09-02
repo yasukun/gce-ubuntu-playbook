@@ -38,6 +38,6 @@
   become: yes
   command: gdebi /var/local/ansible-cache/rstudio-server-0.99.903-amd64.deb
 
-- name: "Setup username: rsuser, password: rspword to log into RStudio Server"
-  bacome: yes
+- name: Setup username rsuser password rspword to log into RStudio Server
+  become: yes
   user: name=rsuser password=$6$rounds=100000$INgo5pOSR6YJURX2$MycqcjP9HV.P01xyzCqN8mQWJ/WLtIcjptd4waokL22/x2pg5g/spXf2BAG0IC/BiSLlA2MrJUURQVs6kuaFB0 update_password=always uid=1031

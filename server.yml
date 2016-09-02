@@ -2,3 +2,7 @@
   become: yes
   roles:
     - my-computer
+#    - rstudio-server
+#    - nginx
+#    - chrome-remote-desktop
+#    - ansible-java8-oracle
