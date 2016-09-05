@@ -51,11 +51,6 @@
       src: chrome-remote-desktop-session
       dest: ~/.chrome-remote-desktop-session
 
-- name: append profile
-  lineinfile: >
-    dest=~/.profile
-    line='export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES=1366x768'
-
 - name: Download Chrome Remote Desktop
   become: yes
   get_url: url=http://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb dest=/var/local/ansible-cache/chrome-remote-desktop_current_amd64.deb

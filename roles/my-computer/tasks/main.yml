@@ -14,3 +14,21 @@
   apt:
     name: "{{item}}"
   with_items: "{{apt_packages}}"
+
+- name: mk dirs
+  shell: mkdir -p ~/.emacs.d/site-lisp
+
+- name: copy dot emacs
+  copy:
+    src: dot_emacs
+    dist: ~/.emacs
+
+- name: copy inits
+  copy:
+    src: inits
+    dist: ~/.emacs/inits
+
+- name: copy dot tmux.conf
+  copy:
+    src: inits
+    dist: ~/.tmux.conf
